@@ -16,18 +16,9 @@ end
 
 class Card
     attr_reader :rank, :suit
-    @@all = []
 
     def initialize(suit, rank)
         @suit = suit
         @rank = rank
-        @@all << self
-    end
-
-    def self.all
-        @@all
     end
 end
-
-# binding.pry
-# 0

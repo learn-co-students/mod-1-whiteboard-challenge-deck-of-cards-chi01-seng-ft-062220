@@ -1,13 +1,10 @@
 require 'pry'
 
 class Deck
-    attr_accessor :cards, :suit, :rank, :deck
+    attr_accessor :cards
 
     def initialize
-        ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-        suits = ["Hearts", "Clubs", "Diamonds", "Spades"] 
-        @cards = []
-        suits.each {|suit| ranks.each {|rank| cards << Card.new(suit, rank)}}
+        @cards = Card.create_a_deck
     end
 
     def choose_card
@@ -16,17 +13,17 @@ class Deck
 end
 
 class Card
-    attr_accessor :rank, :suit
-    @@all = []
+    attr_reader :rank, :suit
 
     def initialize(suit, rank)
         @rank = rank
         @suit = suit
-        @@all << self
     end
 
-    def self.all
-        @@all
+    def self.create_a_deck
+        ranks = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
+        suits = ["Hearts", "Clubs", "Diamonds", "Spades"]
+        suits.map {|suit| ranks.map {|rank| Card.new(suit, rank)}}.flatten
     end
 end
 
